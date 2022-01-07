@@ -1,0 +1,191 @@
+#header{
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    padding-top: 30px;
+   .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+   }
+    .logo{
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+        font-size: 38px;
+        .logo-circle{
+            @include size(68px, 64px);
+            background: $scemeColor;
+            border-radius: 50%;
+            margin-right: 30px;
+            @media (max-width:1024px) {
+                width: 38px;
+                height: 38px;
+                margin-right: 15px;
+            }
+            transition: background .3s;
+            &:hover{
+                background: #2d7e27;
+            }
+        }
+        span{
+            color: $scemeColor;
+            transition: color .3s;
+            &:hover{
+                color: #2d7e27;
+            }
+        }
+        @media (max-width:1024px) {
+            font-size: 25px;
+        }
+    }
+}
+
+.menu{
+    transition: right .3s;
+    @media (max-width:768px) {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        z-index: 10;
+        top: -30px;
+        right: -100%;
+        background: $scemeColor;
+        padding: 20vh 50px;
+        text-align: right;
+     }
+     @media (max-width:578px) {
+       text-align: center;
+     }
+}
+
+.menu-list{
+    display: flex;
+    .menu-item{
+        &:first-child{
+            transition: color .3s;
+            &:hover{
+                color: #2d7e27;
+            }
+        }
+    }
+    .menu-item:not(:first-child){
+        margin-left: 85px;
+        position: relative;
+        &::before{
+            content: '';
+            @include size(10px, 10px);
+            position: absolute;
+            left: -42.5px;
+            top: 5px;
+            background: $scemeColor;
+            border-radius: 50%;
+            transition: left .3s;
+            @media (max-width:1024px) {
+                left: -22.5px;
+            }
+        }
+        &:hover{
+            &::before{
+                left: -20px;
+            }
+        }
+        @media (max-width:1024px) {
+            margin-left: 45px;
+        }
+        @media (max-width:768px) {
+            margin-left: 0px;
+        }
+    }
+    .menu-link{
+        text-decoration: none;
+        color: inherit;
+        @media (max-width:768px) {
+            font-size: 35px;
+        }
+        @media (max-width:425px) {
+            font-size: 25px;
+        }
+    }
+    @media (max-width:768px) {
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+#menu-btn{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 15px;
+    opacity: 0;
+    display: none;
+    @media (max-width:768px) {
+        display: block;
+     }
+}
+
+.menu-toggle{
+    display: none;
+    width: 40px;
+    height: 40px;
+    padding: 0 9px;
+    position: relative;
+    z-index: 11;
+    background: $scemeColor;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    @media (max-width:768px) {
+        display: block;
+     }
+    span{
+        position: absolute;
+        display: block;
+        width: 50%;
+        height: 2px;
+        top: calc(50% - 2px);
+        background: #fff;
+        transition: transform .3s;
+            &::before{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 2px;
+            top: -7px;
+            background: #fff;
+            transition: top, transform .3s;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 2px;
+            top: 7px;
+            background: #fff;
+            transition: top .3s;
+        }
+    }
+}
+
+#menu-btn:checked ~ .menu{
+    right: 0;
+}
+
+#menu-btn:checked ~ .menu-toggle{
+    span{
+        &::before{
+            top: 0;
+            transform: rotate(90deg);
+        }
+
+        &::after{
+            top: 0;
+        }
+        transform: rotate(45deg);
+    }
+}
